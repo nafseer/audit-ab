@@ -1,0 +1,494 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@COKONET">
+    <meta name="twitter:creator" content="@COKONET">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DashForge">
+    <meta name="twitter:description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="twitter:image" content="cokonet.comdashforge/img/dashforge-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="cokonet.comdashforge">
+    <meta property="og:title" content="DashForge">
+    <meta property="og:description" content="Responsive Bootstrap 4 Dashboard Template">
+
+    <meta property="og:image" content="cokonet.comdashforge/img/dashforge-social.png">
+    <meta property="og:image:secure_url" content="cokonet.comdashforge/img/dashforge-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Responsive Bootstrap 4 Dashboard Template">
+    <meta name="author" content="COKONET">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Company List</title>
+
+    <!-- vendor css -->
+    <link href="{% static 'lib/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+
+    <!-- DashForge CSS -->
+    <link rel="stylesheet" href="{% static 'css/dashforge.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashforge.dashboard.css' %}">
+
+    <style>
+
+
+/* Fixed sidenav, full height */
+.sidenav {
+  height: 100%;
+  width: 200px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #36454F;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Style the sidenav links and the dropdown button */
+.sidenav a, .dropdown-btn {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #818181;
+  display: block;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+}
+
+/* On mouse-over */
+.sidenav a:hover, .dropdown-btn:hover {
+  color: #f1f1f1;
+}
+
+/* Main content */
+.main {
+  margin-left: 200px; /* Same as the width of the sidenav */
+  font-size: 20px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+/* Add an active class to the active dropdown button */
+.active {
+  background-color: green;
+  color: white;
+}
+
+/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+.dropdown-container {
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
+/* Optional: Style the caret down icon */
+.fa-caret-down {
+  float: right;
+  padding-right: 8px;
+}
+
+/* Some media queries for responsiveness */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+    </style>
+  </head>
+  <body class="page-profile">
+    <div class="sidenav">
+        <button class="dropdown-btn">Users 
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="#">Users</a>
+            <a href="#">User Roles</a>
+          </div>
+       <a href="components/" class="nav-link"> Programs</a></li>
+       <a href="collections/" class="nav-link">Trail Balance Master</a></li>
+       <a href="collections/" class="nav-link"> Lead Sheets</a></li>
+        <a href="collections/" class="nav-link"> Adjustments</a></li>
+
+        <!-- <a href="#about">Users</a>
+        <a href="#services">Programs</a>
+        <a href="#clients">Trail Balance Masters</a>
+        <a href="#contact">Lead Sheets</a>
+        <a href="#contact">Adjustments</a> -->
+
+      </div>
+    <!-- navbar --> 
+    <div class="main">
+        <div class="content content-fixed" style="padding-right: 300px;">
+            <div class="container pd-x-0 pd-lg-x-10 pd-xl-x-0">
+              <div class="d-sm-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30" style="margin-right:-270px">
+                <div>
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+                      <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
+                      <!-- <li class="breadcrumb-item active" aria-current="page"><i class="far fa-bell"></i></li> -->
+                    </ol>
+                  </nav>
+                  <h4 class="mg-b-0 tx-spacing--1">Adjustment List</h4>
+                </div>
+                <div class="d-none d-md-block">
+                  <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="save" class="wd-10 mg-r-5"></i>Add</button> -->
+                  <a href="adjustmentlistcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Add</a>
+                  <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="upload" class="wd-10 mg-r-5"></i> Export as PDF</button> -->
+                  <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="share-2" class="wd-10 mg-r-5"></i>Get Leads</button> -->
+                  <!-- <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5">Delete</button> -->
+                  <!-- <a class="btn btn-sm pd-x-15 btn-white btn-uppercase" type="submit-btn" id="delete_btn">Delete</a> -->
+      
+                </div>
+              </div>
+      
+              <div class="row row-xs">
+                <div class="col-lg-8 col-xl-12">
+                  <div class="card" style="overflow-x: auto; height: 500px;margin-top: 10px;width: 1150px;">
+      
+                   
+                  </div><!-- card -->
+                </div>
+               
+              </div><!-- row -->
+            </div><!-- container -->
+          </div><!-- content -->
+      
+          <footer class="footer">
+            <div>
+              <span>&copy; 2020 COKONETv1.0.0. </span>
+              <span>Created by <a href="http://COKONET.me">COKONET</a></span>
+            </div>
+            <div>
+              <nav class="nav">
+                    <a href="" class="nav-link">Licenses</a>
+                    <a href="" class="nav-link">Change Log</a>
+                    <a href="" class="nav-link">Get Help</a>
+                  </nav>
+            </div>
+          </footer>
+    </div>
+    
+
+
+   
+
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/feather-icons/feather.min.js' %}"></script>
+    <script src="{% static 'lib/perfect-scrollbar/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'lib/chart.js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/jquery.flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'lib/jquery.flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'lib/jquery.flot/jquery.flot.resize.js' %}"></script>
+
+    <script src="{% static 'js/dashforge.js' %}"></script>
+    <script src="{% static 'js/dashforge.sampledata.js' %}"></script>
+
+    <!-- append theme customizer -->
+    <script src="{% static 'lib/js-cookie/js.cookie.js' %}"></script>
+    <script src="{% static 'js/dashforge.settings.js' %}"></script>
+
+
+
+    <script>
+
+      $(document).ready(function(){
+        $('#delete_btn').click(function(){
+          if(confirm("Are you sure want to delete selected leads?")){
+            var id = [];
+            var csrf= $('input[name=csrfmiddlewaretoken]').val();
+            $(':checkbox:checked').each(function(i){
+              id[i] = $(this).val()
+            })
+            if(id.length === 0){
+              alert('Please select a lead')
+            }else{
+              console.log(id)
+              $.ajax({
+                url:"multidelete/",
+                method:"POST",
+                data:{
+                  id,
+                  csrfmiddlewaretoken: csrf
+                },
+                success:function(response){
+                  for(var i=0; i < id.length; i++){
+                    $('tr#'+id[i]+'');
+                    $('tr#'+id[i]+'').fadeOut('slow');
+                  }
+                }
+              })
+            }
+          }
+    
+        })
+    
+        
+      })
+      </script>
+
+    <script>
+      $(function(){
+        'use strict'
+
+        var ctx1 = document.getElementById('chartBar1').getContext('2d');
+        new Chart(ctx1, {
+          type: 'bar',
+          data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+            datasets: [{
+              data: [150,110,90,115,125,160,160,140,100,110,120,120],
+              backgroundColor: '#66a4fb'
+            },{
+              data: [180,140,120,135,155,170,180,150,140,150,130,130],
+              backgroundColor: '#65e0e0'
+            }]
+          },
+          options: {
+            maintainAspectRatio: false,
+            legend: {
+              display: false,
+                labels: {
+                  display: false
+                }
+            },
+            scales: {
+              xAxes: [{
+                display: false,
+                barPercentage: 0.5
+              }],
+              yAxes: [{
+                gridLines: {
+                  color: '#ebeef3'
+                },
+                ticks: {
+                  fontColor: '#8392a5',
+                  fontSize: 10,
+                  min: 80,
+                  max: 200
+                }
+              }]
+            }
+          }
+        });
+
+
+        /** PIE CHART **/
+        var datapie = {
+          labels: ['Organic Search', 'Email', 'Referral', 'Social Media'],
+          datasets: [{
+            data: [20,20,30,25],
+            backgroundColor: ['#f77eb9', '#7ebcff','#7ee5e5','#fdbd88']
+          }]
+        };
+
+        var optionpie = {
+          maintainAspectRatio: false,
+          responsive: true,
+          legend: {
+            display: false,
+          },
+          animation: {
+            animateScale: true,
+            animateRotate: true
+          }
+        };
+
+        // For a pie chart
+        var ctx2 = document.getElementById('chartDonut');
+        var myDonutChart = new Chart(ctx2, {
+          type: 'doughnut',
+          data: datapie,
+          options: optionpie
+        });
+
+
+        $.plot('#flotChart1', [{
+            data: df1,
+            color: '#c0ccda',
+            lines: {
+              fill: true,
+              fillColor: '#f5f6fa'
+            }
+          },{
+              data: df3,
+              color: '#0168fa',
+              lines: {
+                fill: true,
+                fillColor: '#d1e6fa'
+              }
+            }], {
+    			series: {
+    				shadowSize: 0,
+            lines: {
+              show: true,
+              lineWidth: 1.5
+            }
+    			},
+          grid: {
+            borderWidth: 0,
+            labelMargin: 0
+          },
+    			yaxis: {
+            show: false,
+            max: 65
+          },
+    			xaxis: {
+            show: false,
+            min: 40,
+            max: 100
+          }
+    		});
+
+
+        $.plot('#flotChart2', [{
+          data: df2,
+          color: '#66a4fb',
+          lines: {
+            show: true,
+            lineWidth: 1.5,
+            fill: .03
+          }
+        },{
+          data: df1,
+          color: '#00cccc',
+          lines: {
+            show: true,
+            lineWidth: 1.5,
+            fill: true,
+            fillColor: '#fff'
+          }
+        },{
+          data: df3,
+          color: '#e3e7ed',
+          bars: {
+            show: true,
+            lineWidth: 0,
+            barWidth: .5,
+            fill: 1
+          }
+        }], {
+          series: {
+            shadowSize: 0
+          },
+          grid: {
+            aboveData: true,
+            color: '#e5e9f2',
+            borderWidth: {
+              top: 0,
+              right: 1,
+              bottom: 1,
+              left: 1
+            },
+            labelMargin: 0
+          },
+    			yaxis: {
+            show: false,
+            min: 0,
+            max: 100
+          },
+    			xaxis: {
+            show: true,
+            min: 40,
+            max: 80,
+            ticks: 6,
+            tickColor: 'rgba(0,0,0,0.04)'
+          }
+    		});
+
+        var df3data1 = [[0,12],[1,10],[2,7],[3,11],[4,15],[5,20],[6,22],[7,19],[8,18],[9,20],[10,17],[11,19],[12,18],[13,14],[14,9]];
+        var df3data2 = [[0,0],[1,0],[2,0],[3,2],[4,5],[5,2],[6,12],[7,15],[8,10],[9,8],[10,10],[11,7],[12,2],[13,4],[14,0]];
+        var df3data3 = [[0,2],[1,1],[2,2],[3,4],[4,2],[5,1],[6,0],[7,0],[8,5],[9,2],[10,8],[11,6],[12,9],[13,2],[14,0]];
+        var df3data4 = [[0,0],[1,5],[2,2],[3,0],[4,2],[5,7],[6,10],[7,12],[8,8],[9,6],[10,4],[11,2],[12,0],[13,0],[14,0]];
+
+        var flotChartOption1 = {
+          series: {
+            shadowSize: 0,
+            bars: {
+              show: true,
+              lineWidth: 0,
+              barWidth: .5,
+              fill: 1
+            }
+          },
+          grid: {
+            aboveData: true,
+            color: '#e5e9f2',
+            borderWidth: 0,
+            labelMargin: 0
+          },
+    			yaxis: {
+            show: false,
+            min: 0,
+            max: 25
+          },
+    			xaxis: {
+            show: false
+          }
+    		};
+
+        $.plot('#flotChart3', [{
+          data: df3data1,
+          color: '#e5e9f2'
+        },{
+          data: df3data2,
+          color: '#66a4fb'
+        }], flotChartOption1);
+
+
+        $.plot('#flotChart4', [{
+          data: df3data1,
+          color: '#e5e9f2'
+        },{
+          data: df3data3,
+          color: '#7ee5e5'
+        }], flotChartOption1);
+
+        $.plot('#flotChart5', [{
+          data: df3data1,
+          color: '#e5e9f2'
+        },{
+          data: df3data4,
+          color: '#f77eb9'
+        }], flotChartOption1);
+
+      })
+    </script>
+    <script>
+        /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        
+        for (i = 0; i < dropdown.length; i++) {
+          dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+          } else {
+          dropdownContent.style.display = "block";
+          }
+          });
+        }
+        </script>
+        
+  </body>
+</html>
