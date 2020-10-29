@@ -46,7 +46,7 @@ class ClientsListView(TemplateView):
 class ClientsProfileListCreateView(CreateView):
     model = ClientsMasterNew
     template_name = 'clientsprofilecreate.html'
-    fields = ('client_company','client_cin','client_address','client_doi')
+    fields = ('company_name','client_company','client_cin','client_address','client_doi')
     success_url = reverse_lazy('companylist')
     context_object_name = 'clientslist'
 
@@ -59,6 +59,7 @@ class ClientsProfileListCreateView(CreateView):
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Row(
+                Column('company_new', css_class='form-group col-md-6 mb-0'),
                 Column('client_company', css_class='form-group col-md-6 mb-0'),
                 Column('client_cin', css_class='form-group col-md-6 mb-0'),
                 Column('client_address', css_class='form-group col-md-6 mb-0'),
@@ -76,7 +77,7 @@ class ClientsTeamListCreateView(CreateView):
     model = ClientsMasterNew
     template_name = 'clientsteamcreate.html'
     fields = ('client_teamname','client_designation','client_role',)
-    success_url = reverse_lazy('companylist')
+    success_url = reverse_lazy('companydetails')
     context_object_name = 'clientslist'
 
     def get_context_data(self,*args, **kwargs):
@@ -105,7 +106,7 @@ class ClientsContactCreateView(CreateView):
     model = ClientsMasterNew
     template_name = 'clientscontactcreate.html'
     fields = ('client_name','client_position','client_email','client_phone')
-    success_url = reverse_lazy('companylist')
+    success_url = reverse_lazy('companydetails')
     context_object_name = 'clientslist'
 
     def get_context_data(self,*args, **kwargs):

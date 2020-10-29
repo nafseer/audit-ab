@@ -34,12 +34,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="../../assets/img/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>Task Management</title>
+    <title>Company List</title>
 
     <!-- vendor css -->
     <link href="{% static 'lib/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
     <link href="{% static 'lib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
-
+ <!-- date time -->
+ <link rel="stylesheet" href="{% static 'date-time-phone/jquery-ui.css' %}">
+ <link rel='stylesheet' href="{% static 'date-time-phone/jquery-ui-timepicker-addon.css' %}">
+ <link rel="stylesheet" href="{% static 'date-time-phone/jquery.datetimepicker.min.css' %}">
+ <!-- date time -->
     <!-- DashForge CSS -->
     <link rel="stylesheet" href="{% static 'css/dashforge.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashforge.dashboard.css' %}">
@@ -119,13 +123,13 @@
             <i class="fa fa-caret-down"></i>
           </button>
           <div class="dropdown-container">
-            <a href="userslist">Users</a>
-            <a href="userroles">User Roles</a>
+            <a href="#">Users</a>
+            <a href="#">User Roles</a>
           </div>
-       <a href="programlist" class="nav-link"> Programs</a></li>
-       <a href="traillist" class="nav-link">Trail Balance Master</a></li>
-       <a href="leadslist" class="nav-link"> Lead Sheets</a></li>
-        <a href="adjustmentlist" class="nav-link"> Adjustments</a></li>
+       <a href="components/" class="nav-link"> Programs</a></li>
+       <a href="collections/" class="nav-link">Trail Balance Master</a></li>
+       <a href="collections/" class="nav-link"> Lead Sheets</a></li>
+        <a href="collections/" class="nav-link"> Adjustments</a></li>
 
         <!-- <a href="#about">Users</a>
         <a href="#services">Programs</a>
@@ -146,11 +150,11 @@
                       <!-- <li class="breadcrumb-item active" aria-current="page"><i class="far fa-bell"></i></li> -->
                     </ol>
                   </nav>
-                  <h4 class="mg-b-0 tx-spacing--1">Companys Details</h4>
+                  <h4 class="mg-b-0 tx-spacing--1">Clients Profile Create</h4>
                 </div>
                 <div class="d-none d-md-block">
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="save" class="wd-10 mg-r-5"></i>Add</button> -->
-                  <a href="companylistcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Add</a>
+                  <!-- <a href="leads/create"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Add</a> -->
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="upload" class="wd-10 mg-r-5"></i> Export as PDF</button> -->
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="share-2" class="wd-10 mg-r-5"></i>Get Leads</button> -->
                   <!-- <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5">Delete</button> -->
@@ -160,140 +164,66 @@
               </div>
       
               <div class="row row-xs">
+                <div class="col-lg-8 col-xl-12">
+                  <div class="card" style="overflow-x: auto; height: 500px;margin-top: 10px;width: 1150px;">
+      
+                    {% load crispy_forms_tags %}
+
+                    {% block content %}
+                    <!-- <div class="card" style="padding-left: 28px; padding-top: 25px; padding-right:28px;"> -->
+                      <form method="post" style="margin-left: 30px; margin-right: 30px; margin-top: 30px; margin-bottom: 30px;">
+                        {% csrf_token %}
+                        <div class="form-row">
                 
-                    <div class="col-lg-8 col-xl-7 mg-t-10">
-                        <div class="card" style="height: 1000px;">
-                          <div class="card-header pd-y-20 d-md-flex align-items-center justify-content-between">
-                            <h6 class="mg-b-0">Client Engagements</h6>
-                            <ul class="list-inline d-flex mg-t-20 mg-sm-t-10 mg-md-t-0 mg-b-0">
-                              <li class="list-inline-item d-flex align-items-center">
-                                <a href="companylistcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Create</a>
-                            </li>
-                              
-                              
-                            </ul>
-                          </div><!-- card-header -->
-                          <div class="card-body pos-relative pd-0">
-                            <div class="pos-absolute t-20 l-20 wd-xl-100p z-index-10">
-                              <div class="row">
-                                
-                              </div><!-- row -->
-                            </div>
-                          </div><!-- card-body -->
-                        </div><!-- card -->
-                      </div>
-
-                      <div class="col-lg-4 col-xl-5 mg-t-10">
-                        <div class="card" style="overflow-x: auto;width: 600px;">
-                            <div class="card-header pd-y-20 d-md-flex align-items-center justify-content-between">
-                                <h6 class="mg-b-0">Client Profile</h6>
-                                <ul class="list-inline d-flex mg-t-20 mg-sm-t-10 mg-md-t-0 mg-b-0">
-                                  <li class="list-inline-item d-flex align-items-center">
-                                    <a href="clientsprofilecreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Edit</a>
-                                </li>
-                               
-                                  
-                                </ul>
-                              </div><!-- card-header -->
-                          <div class="card-body pd-20">
-                            <div class="row">
-                              <table class="table table-dashboard mg-b-0" style="margin-top: -10px;">
-                                <thead>
-                                    <tr id="{{ company.id }}">
-                                        <th>Company</th>
-                                        <th>Address</th>
-                                        <th>CIN</th>
-                                        <th>DOI</th>
-                                        </tr>
-                                </thead>
-                                <tbody>
-                                    {% for clients in clientslist %}
-                                    <tr>  
-                                        <td>{{ clients.client_company }}</td>
-                                        <td>{{ clients.client_address }}</td> 
-                                        <td>{{ clients.client_cin }}</td>
-                                        <td>{{ clients.client_doi }}</td>
-                                    </tr>  
-                                {% endfor %}  
-                                    </tbody> 
-                                </table>
-                            </div><!-- row -->
-                          </div><!-- card-body -->                          
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.auditee_name|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.started_on|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.completed_on|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.reviewer|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.reviewed_on|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.time_taken|as_crispy_field }}
+                          </div>
+                          <div class="form-group col-md-6 mb-0">
+                            {{ form.comments|as_crispy_field }}
+                          </div>
+                    
+                    
                         </div>
+                     
+                    
+                    
+                    
+                    
+                    
+                    
+                          <!-- </div> -->
+                        <button onclick="myFunction()" type="submit" class="btn btn-primary">Create</button>
+                     
+                    
+                    
+                    
+                    
+                    
+                    
+                          <!-- </div> -->
+                      </form>
+                    {% endblock %}
 
-                      <div class="col-lg-4 col-xl-5 mg-t-10">
-                         <div class="card" style="width: 600px;">
-                            <div class="card-header pd-y-20 d-md-flex align-items-center justify-content-between">
-                              <h6 class="mg-b-0">Client Team</h6>
-                              <ul class="list-inline d-flex mg-t-20 mg-sm-t-10 mg-md-t-0 mg-b-0">
-                              <li class="list-inline-item d-flex align-items-center">
-                              <a href="clientsteamcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Edit</a>
-                              </li>
-                              </ul>
-                          </div><!-- card-header -->
-                      <div class="card-body pd-20">
-                      <div class="row">
-                      <table class="table table-dashboard mg-b-0" style="margin-top: -10px;">
-                        <thead>
-                          <tr>
-                              <th>Team Name</th>
-                              <th>Designation</th>
-                              <th>Role</th>
-                              </tr>
-                      </thead>
-                      <tbody>
-                          {% for clients in clientslist %}
-                          <tr>  
-                              <td>{{ clients.client_teamname }}</td>
-                              <td>{{ clients.client_designation }}</td> 
-                              <td>{{ clients.client_role }}</td>
-                          </tr>  
-                      {% endfor %}  
-                          </tbody>   
-                      </table>
-                    </div><!-- row -->
-                  </div><!-- card-body -->
-            </div>
-      <div class="col-lg-4 col-xl-5 mg-t-10">
-        <div class="card" style="width: 600px;">
-            <div class="card-header pd-y-20 d-md-flex align-items-center justify-content-between">
-                <h6 class="mg-b-0">Client Contact</h6>
-                <ul class="list-inline d-flex mg-t-20 mg-sm-t-10 mg-md-t-0 mg-b-0">
-                  <li class="list-inline-item d-flex align-items-center">
-                    <a href="clientscontactcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Edit</a>
-                </li> 
-                </ul>
-              </div><!-- card-header -->
-          <div class="card-body pd-20">
-            <div class="row" style="">
-              <table class="table table-dashboard mg-b-0" style="margin-top: -10px;">
-                <thead>
-                  <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Email</th>
-                      <th>Phone</th>
-                      </tr>
-              </thead>
-              <tbody>
-                  {% for clients in clientslist %}
-                  <tr>  
-                      <td>{{ clients.client_name }}</td>
-                      <td>{{ clients.client_position }}</td> 
-                      <td>{{ clients.client_email }}</td>
-                      <td>{{ clients.client_phone }}</td>
-                  </tr>  
-              {% endfor %}  
-                  </tbody>    
-              </table>
-            </div><!-- row -->
-          </div><!-- card-body -->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- row -->
+
+                  </div><!-- card -->
+                </div>
+               
+              </div><!-- row -->
             </div><!-- container -->
           </div><!-- content -->
       
@@ -615,6 +545,33 @@
           });
         }
         </script>
+
+<script src="{% static 'date-time-phone\jquery.js' %}"></script>
+<script src="{% static 'date-time-phone\jquery.datetimepicker.full.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+  <script>
+    $(function() {
+      $("#autobots").autocomplete({
+        source: ['abc', 'efg', 'hij']
+      });
+    });
+    </script>
+  
+  <script src="{% static 'date-time-phone\jquery.js' %}"></script>
+  <script src="{% static 'date-time-phone\jquery.datetimepicker.full.js' %}"></script>
+
+<script>
+
+  $("#id_started_on").datetimepicker();
+  $("#id_completed_on").datetimepicker();
+  $("#id_reviewed_on").datetimepicker();
+  $("#id_time_taken").datetimepicker();
+
+</script>
         
   </body>
 </html>

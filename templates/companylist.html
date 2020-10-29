@@ -114,7 +114,7 @@
     </style>
   </head>
   <body class="page-profile">
-    <div class="sidenav">
+    <!-- <div class="sidenav">
         <button class="dropdown-btn">Users 
             <i class="fa fa-caret-down"></i>
           </button>
@@ -133,7 +133,7 @@
         <a href="#contact">Lead Sheets</a>
         <a href="#contact">Adjustments</a> -->
 
-      </div>
+      <!-- </div> --> 
     <!-- navbar --> 
     <div class="main">
         <div class="content content-fixed" style="padding-right: 300px;">
@@ -163,7 +163,7 @@
                 <div class="col-lg-8 col-xl-12">
                   <div class="card" style="overflow-x: auto; height: 500px;margin-top: 10px;width: 1150px;">
       
-                    <table class="table table-hover m-b-0" style="margin-top: -10px;">
+                    <table class="table table-dashboard mg-b-0" style="margin-top: -10px;">
                         <thead>
                             <tr>
         
@@ -188,7 +188,7 @@
                             <tr id="{{ company.id }}">  
                               
                                 <td>{{ company.id }}</td>
-                                <td>{{ company.company_name }}</td> 
+                                <td><a href="{% url 'companydetails' company.id%}">{{ company.company_name }}</a></td> 
                                 <td></td>
                                 <td>
                                               <a href="">Edit</a> 

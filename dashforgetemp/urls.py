@@ -24,9 +24,9 @@ from company.views import CompanysListView,CompanyListCreateView,CompanysDetails
 from trailbalancemaster.views import TrailListView,TrailListCreateView
 from leads.views import LeadsListView,LeadsListCreateView
 from adjustments.views import AdjustmentListView,AdjustmentListCreateView
-from client.views import ClientsContactCreateView,ClientsProfileListCreateView,ClientsListView,ClientsTeamListCreateView
+from client.views import ClientsContactCreateView,ClientsListView,ClientsProfileListCreateView,ClientsTeamListCreateView
 from programs.views import ProgramListCreateView,ProgramListView
-
+from procedure.views import ProcedureCreateView,ProcedureListView,CommentCreateView,ProceduresListView
 
 
 
@@ -65,7 +65,7 @@ urlpatterns = [
     path('companylistcreate', CompanyListCreateView.as_view(), name='companylistcreate'),
 
     #Companys Info And Details Details  
-    path('companydetails', CompanysDetailsView.as_view(), name='companydetails'),
+    path('companydetails/<int:pk>/', CompanysDetailsView.as_view(), name='companydetails'),
 
     #Program Details
     path('programlist', ProgramListView.as_view(), name='programlist'),
@@ -95,12 +95,25 @@ urlpatterns = [
     path('clients', ClientsListView.as_view(), name='clients'),
 
     #Clients Profile List Create
-    path('clientsprofilecreate', ClientsProfileListCreateView.as_view(), name='clientsprofilecreate'),
+    path('companydetails/<int:pk>/clientsprofilecreate', ClientsProfileListCreateView.as_view(), name='clientsprofilecreate'),
 
     #Clients Team List Create
-    path('clientsteamcreate', ClientsTeamListCreateView.as_view(), name='clientsteamcreate'),
+    path('companydetails/<int:pk>/clientsteamcreate', ClientsTeamListCreateView.as_view(), name='clientsteamcreate'),
 
     #Clients Conact List Create
-    path('clientscontactcreate', ClientsContactCreateView.as_view(), name='clientscontactcreate'),
+    path('companydetails/<int:pk>/clientscontactcreate', ClientsContactCreateView.as_view(), name='clientscontactcreate'),
+
+    #Procedures List Create
+    path('companydetails/<int:pk>/procedureslistcreate', ProcedureCreateView.as_view(), name='procedureslistcreate'),
+
+    #Procedures view 
+    path('companydetails/<int:pk>/procedureslist', ProcedureListView.as_view(), name='procedureslist'),
+
+    #Procedures comment view 
+    path('companydetails/<int:pk>/procedurescomment', CommentCreateView.as_view(), name='procedurescomment'),
+
+    #Procedure List view 
+    path('companydetails/<int:pk>/procedurelist', ProceduresListView.as_view(), name='procedurelist'),
+
 
 ]

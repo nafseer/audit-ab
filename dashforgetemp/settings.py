@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'adjustments',
     'client',
     'programs',
+    'procedure'
 
 
     
@@ -93,7 +94,7 @@ WSGI_APPLICATION = 'dashforgetemp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'accountsapp',
+        'NAME': 'accountingapp',
         'USER': 'root',
         'PASSWORD': 'stranger',
         'HOST': 'localhost',
@@ -144,4 +145,4 @@ os.path.join(BASE_DIR, 'static'),
 ) 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'companylist'
