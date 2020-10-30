@@ -18,10 +18,12 @@ class ProcedureMaster(models.Model):
     reviewer = models.CharField(max_length=50, null=True,blank=True)
     reviewed_on = models.DateTimeField(default=timezone.now,null=True,blank=True)
     time_taken = models.DateTimeField(default=timezone.now,null=True,blank=True)
+    notesfile = models.FileField(null=True)
     comments = models.CharField(max_length=400, null=True,blank=True)
  
     def __str__(self):
-        return (self.comments)
+        return (self.auditee_name)
+
 
 
 

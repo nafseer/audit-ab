@@ -46,7 +46,7 @@ class ProcedureListView(TemplateView):
 class ProcedureCreateView(CreateView):
     model = ProcedureMaster
     template_name = 'procedurecreate.html'
-    fields = ('auditee_name','started_on','completed_on','reviewer','reviewed_on','time_taken','comments')
+    fields = ('auditee_name','started_on','completed_on','reviewer','reviewed_on','time_taken')
     success_url = reverse_lazy('companylist')
     context_object_name = 'procedures'
 
@@ -65,7 +65,6 @@ class ProcedureCreateView(CreateView):
                 Column('reviewer', css_class='form-group col-md-6 mb-0'),
                 Column('reviewed_on', css_class='form-group col-md-6 mb-0'),
                 Column('time_taken', css_class='form-group col-md-6 mb-0'),
-                Column('comments', css_class='form-group col-md-6 mb-0'),
                
 
                 css_class='form-row'
@@ -80,7 +79,7 @@ class ProcedureCreateView(CreateView):
 class CommentCreateView(CreateView):
     model = ProcedureMaster
     template_name = 'procedures.html'
-    fields = ('comments',)
+    fields = ('comments','notesfile',)
     success_url = reverse_lazy('companylist')
     context_object_name = 'procedures'
 
@@ -95,6 +94,8 @@ class CommentCreateView(CreateView):
         self.helper.layout = Layout(
             Row(
                 Column('comments', css_class='form-group col-md-6 mb-0'),
+                Column('notesfile', css_class='form-group col-md-6 mb-0'),
+
                 css_class='form-row'
             ),
             

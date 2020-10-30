@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'dashforgetemp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'accountingapp',
+        'NAME': 'accountingsapp',
         'USER': 'root',
         'PASSWORD': 'stranger',
         'HOST': 'localhost',
@@ -144,5 +144,7 @@ STATICFILES_DIRS = (
 os.path.join(BASE_DIR, 'static'), 
 ) 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'companylist'

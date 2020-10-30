@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from testapp.views import AnalyticsView,SalesView,UsersView,LoginView
 from userprofile.views import UsersListView,UserSignUpView
@@ -116,4 +118,5 @@ urlpatterns = [
     path('companydetails/<int:pk>/procedurelist', ProceduresListView.as_view(), name='procedurelist'),
 
 
-]
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
