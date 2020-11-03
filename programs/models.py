@@ -20,7 +20,7 @@ class ProgramListMaster(models.Model):
     program_name = models.CharField(max_length=50, blank=True)
     leadsheets = models.ForeignKey(LeadSheetsMasterNew,on_delete=models.CASCADE,null=True,blank=True)
     scopeof_average = models.CharField(max_length=50, blank=True)
-    time_taken = models.DateTimeField(default=timezone.now,null=True,blank=True)
+    time_taken = models.CharField(max_length=50, blank=True,null=True)
     def __str__(self):
         return (self.program_name)
 

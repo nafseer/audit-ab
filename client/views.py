@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import ClientsMasterNew
+from .models import ClientsProfile,ClientsTeam,ClientsContact
+from company.models import CompanyList
 # Create your views here.
 from django.views.generic import ListView,CreateView,TemplateView
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -20,17 +21,18 @@ from django.views.generic.detail import DetailView
 # Create your views here.
 class ClientsListView(TemplateView):
 
-    model = ClientsMasterNew
+    model = ClientsProfile
     template_name = 'clients.html'
     context_object_name = 'clientslist'
     # paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super(ClientsListView, self).get_context_data(**kwargs)
-        clientslist = ClientsMasterNew.objects.all()
-        print(')))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
-        print(clientslist)
-        print(')))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
+        pk = self.kwargs['pk']
+        clientslist = ClientsProfile.objects.filter(company_name = pk)
+        print('hhhhhh')
+        print(pk)
+        print('hhhh')
         page = self.request.GET.get('page')
         # paginator = Paginator(users, self.paginate_by)
         # try:
@@ -44,7 +46,7 @@ class ClientsListView(TemplateView):
 
 
 class ClientsProfileListCreateView(CreateView):
-    model = ClientsMasterNew
+    model = ClientsProfile
     template_name = 'clientsprofilecreate.html'
     fields = ('company_name','client_company','client_cin','client_address','client_doi')
     success_url = reverse_lazy('companylist')
@@ -52,9 +54,23 @@ class ClientsProfileListCreateView(CreateView):
 
     def get_context_data(self,*args, **kwargs):
         context = super(ClientsProfileListCreateView, self).get_context_data(**kwargs)
-        i=context['form']
-        print(context)
-        print(i)
+        # i=context['form']
+        # print(context)
+        # print(i)
+
+
+        s=context['form']
+        # print(f.fields)
+        pk = self.kwargs['pk']
+        devices = CompanyList.objects.filter(pk=pk)
+        s.fields['company_name'].queryset = devices
+        a=CompanyList.objects.get(id=pk)
+        # print(t.id)
+        s.fields['company_name'].initial = a
+        context['form']=s
+        # print(context['form'].fields['lead_id'].initial)
+        context['test'] = 'dkjghrke'
+        # print(context, 'piiiiiiiiiiiiiiiiiiiiiiiii')
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -74,17 +90,23 @@ class ClientsProfileListCreateView(CreateView):
         return context
 
 class ClientsTeamListCreateView(CreateView):
-    model = ClientsMasterNew
+    model = ClientsTeam
     template_name = 'clientsteamcreate.html'
-    fields = ('client_teamname','client_designation','client_role',)
-    success_url = reverse_lazy('companydetails')
-    context_object_name = 'clientslist'
+    fields = ('company_name','client_teamname','client_designation','client_role',)
+    success_url = reverse_lazy('companylist')
+    context_object_name = 'clientsteamlist'
 
     def get_context_data(self,*args, **kwargs):
         context = super(ClientsTeamListCreateView, self).get_context_data(**kwargs)
-        i=context['form']
-        print(context)
-        print(i)
+        s=context['form']
+        # print(f.fields)
+        pk = self.kwargs['pk']
+        devices = CompanyList.objects.filter(pk=pk)
+        s.fields['company_name'].queryset = devices
+        a=CompanyList.objects.get(id=pk)
+        # print(t.id)
+        s.fields['company_name'].initial = a
+        context['form']=s
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(
@@ -103,17 +125,23 @@ class ClientsTeamListCreateView(CreateView):
         return context
 
 class ClientsContactCreateView(CreateView):
-    model = ClientsMasterNew
+    model = ClientsContact
     template_name = 'clientscontactcreate.html'
-    fields = ('client_name','client_position','client_email','client_phone')
-    success_url = reverse_lazy('companydetails')
-    context_object_name = 'clientslist'
+    fields = ('company_name','client_name','client_position','client_email','client_phone')
+    success_url = reverse_lazy('companylist')
+    context_object_name = 'clientcontacts'
 
     def get_context_data(self,*args, **kwargs):
         context = super(ClientsContactCreateView, self).get_context_data(**kwargs)
-        i=context['form']
-        print(context)
-        print(i)
+        s=context['form']
+        # print(f.fields)
+        pk = self.kwargs['pk']
+        devices = CompanyList.objects.filter(pk=pk)
+        s.fields['company_name'].queryset = devices
+        a=CompanyList.objects.get(id=pk)
+        # print(t.id)
+        s.fields['company_name'].initial = a
+        context['form']=s
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.layout = Layout(

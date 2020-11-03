@@ -150,7 +150,7 @@
                 </div>
                 <div class="d-none d-md-block">
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase"><i data-feather="save" class="wd-10 mg-r-5"></i>Add</button> -->
-                  <a href="companylistcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Add</a>
+                  <a href="procedureslistcreate"  class="btn btn-sm pd-x-15 btn-white btn-uppercase" >Add</a>
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="upload" class="wd-10 mg-r-5"></i> Export as PDF</button> -->
                   <!-- <button class="btn btn-sm pd-x-15 btn-white btn-uppercase mg-l-5"><i data-feather="share-2" class="wd-10 mg-r-5"></i>Get Leads</button> -->
                   <!-- <button class="btn btn-sm pd-x-15 btn-primary btn-uppercase mg-l-5">Delete</button> -->
@@ -242,7 +242,7 @@
                               </tr>
                       </thead>
                       <tbody>
-                          {% for clients in clientslist %}
+                          {% for clients in clientsteams %}
                           <tr>  
                               <td>{{ clients.client_teamname }}</td>
                               <td>{{ clients.client_designation }}</td> 
@@ -276,7 +276,7 @@
                       </tr>
               </thead>
               <tbody>
-                  {% for clients in clientslist %}
+                  {% for clients in clientcontacts %}
                   <tr>  
                       <td>{{ clients.client_name }}</td>
                       <td>{{ clients.client_position }}</td> 

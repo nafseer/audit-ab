@@ -20,27 +20,41 @@ class RolesMasterNew(models.Model):
         return str(self.client_role)
 
 
-class ClientsMasterNew(models.Model):
+class ClientsProfile(models.Model):
     
     company_name = models.CharField(max_length=50, null=True,blank=True)
-    client_engagement = models.CharField(max_length=150, null=True,blank=True)
     client_company = models.CharField(max_length=150, null=True,blank=True)
     client_cin = models.CharField(max_length=150, null=True,blank=True)
     client_address = models.CharField(max_length=200, null=True,blank=True)
     client_doi = models.CharField(max_length=200,null=True,blank=True)
+    # client_teamname = models.CharField(max_length=200, null=True,blank=True)
+    # client_designation = models.ForeignKey(DesignationMasterNew,on_delete=models.CASCADE,null=True,blank=True,related_name='sample3')
+    # client_role = models.ForeignKey(RolesMasterNew,on_delete=models.CASCADE,null=True,blank=True,related_name='sample4')
+    # client_name = models.CharField(max_length=150, null=True,blank=True)
+    # client_position = models.CharField(max_length=150, null=True,blank=True)
+    # client_email = models.CharField(max_length=150, null=True,blank=True)
+    # client_phone = models.CharField(max_length=150, null=True,blank=True)
+
+    def __str__(self):
+        return str(self.client_company)
+
+class ClientsTeam(models.Model):
+    company_name = models.CharField(max_length=50, null=True,blank=True)
     client_teamname = models.CharField(max_length=200, null=True,blank=True)
     client_designation = models.ForeignKey(DesignationMasterNew,on_delete=models.CASCADE,null=True,blank=True,related_name='sample3')
     client_role = models.ForeignKey(RolesMasterNew,on_delete=models.CASCADE,null=True,blank=True,related_name='sample4')
+
+    def __str__(self):
+        return str(self.client_teamname)
+    
+class ClientsContact(models.Model):
+    company_name = models.CharField(max_length=50, null=True,blank=True)
     client_name = models.CharField(max_length=150, null=True,blank=True)
     client_position = models.CharField(max_length=150, null=True,blank=True)
     client_email = models.CharField(max_length=150, null=True,blank=True)
     client_phone = models.CharField(max_length=150, null=True,blank=True)
 
     def __str__(self):
-        return str(self.company_name)
-
-
-
-    
+        return str(self.client_name)
 
 

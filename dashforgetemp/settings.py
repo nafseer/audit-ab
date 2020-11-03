@@ -94,10 +94,10 @@ WSGI_APPLICATION = 'dashforgetemp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'accountingsapp',
+        'NAME': 'account',
         'USER': 'root',
-        'PASSWORD': 'stranger',
-        'HOST': 'localhost',
+        'PASSWORD': 'asd123..',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }

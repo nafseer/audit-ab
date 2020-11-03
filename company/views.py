@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from client.models import ClientsMasterNew
+# from client.models import ClientsMasterNew
+from client.models import ClientsProfile,ClientsTeam,ClientsContact
 from .models import CompanyList
 # Create your views here.
 from django.views.generic import ListView,CreateView,TemplateView
@@ -72,16 +73,25 @@ class CompanyListCreateView(CreateView):
 
 class CompanysDetailsView(TemplateView):
 
-    model = ClientsMasterNew
+    # model = ClientsMasterNew
     template_name = 'companydetails.html'
     context_object_name = 'clientslist'
 
     def get_context_data(self, **kwargs):
         context = super(CompanysDetailsView, self).get_context_data(**kwargs)
-        clientslist = ClientsMasterNew.objects.all()
-        print(')))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
+        # clientslist = ClientsProfile.objects.all()
+        # print(clientslist)
+        pk = self.kwargs['pk']
+        companylist = CompanyList.objects.filter(id = pk).values()
+
+        curr_comp = companylist[0]['company_name']
+        clientslist = ClientsProfile.objects.filter(company_name = curr_comp)
+        clientsteams = ClientsTeam.objects.filter(company_name = curr_comp)
+        clientcontacts = ClientsContact.objects.filter(company_name = curr_comp)
+        print('hhhhhh')
+        print(pk)
         print(clientslist)
-        print(')))))))))))))))))))))))))))))))))))))))))))))))))))))))))))')
+        print('hhhh')
         page = self.request.GET.get('page')
         # paginator = Paginator(users, self.paginate_by)
         # try:
@@ -91,4 +101,7 @@ class CompanysDetailsView(TemplateView):
         # except EmptyPage:
         #     users = paginator.page(paginator.num_pages)
         context['clientslist'] = clientslist
+        context['clientsteams'] = clientsteams 
+        context['clientcontacts'] = clientcontacts 
+
         return context

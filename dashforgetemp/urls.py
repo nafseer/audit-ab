@@ -26,10 +26,10 @@ from company.views import CompanysListView,CompanyListCreateView,CompanysDetails
 from trailbalancemaster.views import TrailListView,TrailListCreateView
 from leads.views import LeadsListView,LeadsListCreateView
 from adjustments.views import AdjustmentListView,AdjustmentListCreateView
-from client.views import ClientsContactCreateView,ClientsListView,ClientsProfileListCreateView,ClientsTeamListCreateView
+# from client.views import ClientsContactCreateView,ClientsListView,ClientsProfileListCreateView,ClientsTeamListCreateView
 from programs.views import ProgramListCreateView,ProgramListView
-from procedure.views import ProcedureCreateView,ProcedureListView,CommentCreateView,ProceduresListView
-
+from procedure.views import ProcedureCreateView,CommentCreateView,ProceduresListView
+from client.views import ClientsListView,ClientsProfileListCreateView,ClientsTeamListCreateView,ClientsContactCreateView
 
 
 urlpatterns = [
@@ -108,14 +108,16 @@ urlpatterns = [
     #Procedures List Create
     path('companydetails/<int:pk>/procedureslistcreate', ProcedureCreateView.as_view(), name='procedureslistcreate'),
 
-    #Procedures view 
-    path('companydetails/<int:pk>/procedureslist', ProcedureListView.as_view(), name='procedureslist'),
+    # Procedures view 
+    # path('companydetails/<int:pk>/procedureslist', ProceduresListView.as_view(), name='procedureslist'),
 
     #Procedures comment view 
     path('companydetails/<int:pk>/procedurescomment', CommentCreateView.as_view(), name='procedurescomment'),
 
-    #Procedure List view 
-    path('companydetails/<int:pk>/procedurelist', ProceduresListView.as_view(), name='procedurelist'),
+    #Procedures list view 
+    path('companydetails/<int:pk>/procedures', ProceduresListView.as_view(), name='procedureslist'),
+    # #Procedure List view 
+    # path('companydetails/<int:pk>/procedurelist', ProcedureListView.as_view(), name='procedurelist'),
 
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
